@@ -42,6 +42,13 @@ public class CacheConfiguration {
             cm.createCache(ru.anhot.comfortville.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(ru.anhot.comfortville.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(ru.anhot.comfortville.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Site.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Person.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Comment.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.News.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Section.class.getName(), jcacheConfiguration);
+            cm.createCache(ru.anhot.comfortville.domain.Rate.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

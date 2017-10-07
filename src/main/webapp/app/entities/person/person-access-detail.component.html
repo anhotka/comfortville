@@ -1,0 +1,38 @@
+
+<div *ngIf="person">
+    <h2><span>Person</span> {{person.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Pic</span></dt>
+        <dd>
+            <div *ngIf="person.pic">
+                <a (click)="openFile(person.picContentType, person.pic)">
+                    <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-width: 100%;" alt="person image"/>
+                </a>
+                {{person.picContentType}}, {{byteSize(person.pic)}}
+            </div>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{person.type}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{person.userId}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'person-access/'+ person.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

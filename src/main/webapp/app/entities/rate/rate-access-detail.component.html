@@ -1,0 +1,41 @@
+
+<div *ngIf="rate">
+    <h2><span>Rate</span> {{rate.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Score</span></dt>
+        <dd>
+            <span>{{rate.score}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{rate.date | date:'medium'}}</span>
+        </dd>
+        <dt><span>Site</span></dt>
+        <dd>
+            <div *ngIf="rate.siteId">
+                <a [routerLink]="['/site-access', rate.siteId]">{{rate.siteId}}</a>
+            </div>
+        </dd>
+        <dt><span>Person</span></dt>
+        <dd>
+            <div *ngIf="rate.personId">
+                <a [routerLink]="['/person-access', rate.personId]">{{rate.personId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'rate-access/'+ rate.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

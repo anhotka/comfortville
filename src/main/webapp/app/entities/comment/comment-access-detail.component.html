@@ -1,0 +1,45 @@
+
+<div *ngIf="comment">
+    <h2><span>Comment</span> {{comment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{comment.title}}</span>
+        </dd>
+        <dt><span>Text</span></dt>
+        <dd>
+            <span>{{comment.text}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{comment.date | date:'medium'}}</span>
+        </dd>
+        <dt><span>Person</span></dt>
+        <dd>
+            <div *ngIf="comment.personId">
+                <a [routerLink]="['/person-access', comment.personId]">{{comment.personId}}</a>
+            </div>
+        </dd>
+        <dt><span>Site</span></dt>
+        <dd>
+            <div *ngIf="comment.siteId">
+                <a [routerLink]="['/site-access', comment.siteId]">{{comment.siteId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'comment-access/'+ comment.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

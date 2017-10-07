@@ -1,0 +1,50 @@
+
+<div *ngIf="site">
+    <h2><span>Site</span> {{site.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{site.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{site.description}}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+            <div *ngIf="site.photo">
+                <a (click)="openFile(site.photoContentType, site.photo)">
+                    <img [src]="'data:' + site.photoContentType + ';base64,' + site.photo" style="max-width: 100%;" alt="site image"/>
+                </a>
+                {{site.photoContentType}}, {{byteSize(site.photo)}}
+            </div>
+        </dd>
+        <dt><span>Location</span></dt>
+        <dd>
+            <div *ngIf="site.locationId">
+                <a [routerLink]="['/location-access', site.locationId]">{{site.locationId}}</a>
+            </div>
+        </dd>
+        <dt><span>Section</span></dt>
+        <dd>
+            <div *ngIf="site.sectionId">
+                <a [routerLink]="['/section-access', site.sectionId]">{{site.sectionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'site-access/'+ site.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -66,6 +66,10 @@ relationship OneToOne {
 	Person{user} to User
 }
 
+relationship OneToOne {
+	Site{location} to Location
+}
+
 // Set pagination options
 //paginate JobHistory, Employee with infinite-scroll
 //paginate Job with pagination

@@ -1,0 +1,39 @@
+
+<div *ngIf="news">
+    <h2><span>News</span> {{news.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{news.title}}</span>
+        </dd>
+        <dt><span>Text</span></dt>
+        <dd>
+            <span>{{news.text}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{news.date | date:'medium'}}</span>
+        </dd>
+        <dt><span>Person</span></dt>
+        <dd>
+            <div *ngIf="news.personId">
+                <a [routerLink]="['/person-access', news.personId]">{{news.personId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'news-access/'+ news.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
