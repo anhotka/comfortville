@@ -1,0 +1,78 @@
+
+entity Site {
+    name String,
+    description String,
+    photo ImageBlob
+}
+
+entity Location {
+    address String,
+    coordinates String
+    }
+
+entity Person {
+    pic ImageBlob,
+    type String
+}
+
+entity Comment {
+	title String,
+    text String,
+    date ZonedDateTime,
+}
+
+entity News {
+	title String,
+    text String,
+    date ZonedDateTime
+	}
+
+entity Section {
+	name String,
+	pic ImageBlob,
+    }
+
+
+entity Rate {
+	score Integer
+    date ZonedDateTime
+}
+
+relationship OneToOne {
+	Rate{site} to Site
+}
+
+relationship OneToOne {
+	Rate{person} to Person
+}
+
+relationship ManyToOne {
+	News{person} to Person
+}
+
+relationship ManyToOne {
+	Site{section} to Section
+}
+
+relationship OneToOne {
+	Comment{person} to Person
+}
+
+relationship OneToOne {
+	Comment{site} to Site
+}
+
+relationship OneToOne {
+	Person{user} to User
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+// Set an angular suffix
+angularSuffix * with access
